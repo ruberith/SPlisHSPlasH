@@ -2343,7 +2343,7 @@ void SimulatorBase::initDensityMap(std::vector<Vector3r> &x, std::vector<unsigne
 		Discregrid::TriangleMesh sdfMesh(&doubleVec[0], faces.data(), x.size(), faces.size() / 3);
 #endif
 
-		Discregrid::MeshDistance md(sdfMesh);
+		Discregrid::TriangleMeshDistance md(sdfMesh);
 		Eigen::AlignedBox3d domain;
 		for (auto const& x_ : x)
 		{
@@ -2363,7 +2363,7 @@ void SimulatorBase::initDensityMap(std::vector<Vector3r> &x, std::vector<unsigne
 		Real sign = 1.0;
 		if (boundaryData->mapInvert)
 			sign = -1.0;
-		func = [&md, &sign, &tolerance](Eigen::Vector3d const& xi) {return sign * (md.signedDistanceCached(xi) - tolerance); };
+		func = [&md, &sign, &tolerance](Eigen::Vector3d const& xi) {return sign * (md.signed_distance(xi).distance - tolerance); };
 
 		LOG_INFO << "Generate SDF";
 		START_TIMING("SDF Construction");
@@ -2531,7 +2531,7 @@ void SimulatorBase::initVolumeMap(std::vector<Vector3r> &x, std::vector<unsigned
 		Discregrid::TriangleMesh sdfMesh(&doubleVec[0], faces.data(), x.size(), faces.size() / 3);
 #endif
 
-		Discregrid::MeshDistance md(sdfMesh);
+		Discregrid::TriangleMeshDistance md(sdfMesh);
 		Eigen::AlignedBox3d domain;
 		for (auto const& x_ : x)
 		{
@@ -2555,7 +2555,7 @@ void SimulatorBase::initVolumeMap(std::vector<Vector3r> &x, std::vector<unsigned
 			sign = -1.0;
 		const Real particleRadius = sim->getParticleRadius();
 		// subtract 0.5 * particle radius to prevent penetration of particles and the boundary
-		func = [&md, &sign, &tolerance, &particleRadius](Eigen::Vector3d const& xi) {return sign * (md.signedDistanceCached(xi) - tolerance ); };
+		func = [&md, &sign, &tolerance, &particleRadius](Eigen::Vector3d const& xi) {return sign * (md.signed_distance(xi).distance - tolerance ); };
 
 		LOG_INFO << "Generate SDF";
 		START_TIMING("SDF Construction");
