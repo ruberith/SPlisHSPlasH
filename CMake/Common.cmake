@@ -100,6 +100,7 @@ endif(MINGW)
 
 if(APPLE)
 	set(CMAKE_MACOSX_RPATH 1)
+	add_definitions(-DGL_SILENCE_DEPRECATION)
 endif()
 
 if (MSVC)
