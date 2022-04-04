@@ -36,9 +36,11 @@ Vector3r translation = Vector3r::Zero();
 Vector3r rotationAxis = Vector3r::UnitY();
 Real angle = 0;
 
+namespace std {
 std::istream& operator >> (std::istream& istream, Vector3r& v)
 {
 	return istream >> std::skipws >> v[0] >> v[1] >> v[2];
+}
 }
 
 

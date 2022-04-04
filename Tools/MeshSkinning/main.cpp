@@ -112,6 +112,7 @@ unsigned int getNeighbor(const unsigned int pointSetIndex, const unsigned int in
 	return neighborhoodSearch->point_set(0).neighbor(pointSetIndex, index, k);
 }
 
+namespace std {
 std::istream& operator >> (std::istream& istream, Vector3r& r)
 {
 	return istream >> std::skipws >> r[0] >> r[1] >> r[2];
@@ -121,6 +122,7 @@ std::ostream& operator << (std::ostream& out, const Vector3r& r)
 {
 	out << r[0] << ", " << r[1] << ", " << r[2];
 	return out;
+}
 }
 
 

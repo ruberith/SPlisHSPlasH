@@ -62,6 +62,7 @@ bool useCache = true;
 std::shared_ptr<Discregrid::CubicLagrangeDiscreteGrid> distanceField;
 
 
+namespace std {
 std::istream& operator >> (std::istream& istream, SamplingBase::Region& r)
 {
 	return istream >> std::skipws >> r.m_min[0] >> r.m_min[1] >> r.m_min[2] >> r.m_max[0] >> r.m_max[1] >> r.m_max[2];
@@ -93,6 +94,7 @@ std::ostream& operator << (std::ostream& out, const Vector3r& r)
 {
 	out << r[0] << ", " << r[1] << ", " << r[2];
 	return out;
+}
 }
 
 // main 

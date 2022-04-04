@@ -15,9 +15,11 @@
 using namespace SPH;
 
 
+namespace std {
 std::istream& operator >> (std::istream& istream, Vector3r& v)
 {
 	return istream >> std::skipws >> v[0] >> v[1] >> v[2];
+}
 }
 
 
