@@ -11,7 +11,11 @@
 
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
+#ifdef __APPLE__
+	#include "imgui_impl_opengl2.h"
+#else
+	#include "imgui_impl_opengl3.h"
+#endif
 
 
 using namespace SPH;
@@ -95,7 +99,11 @@ void Simulator_GUI_imgui::initImgui()
 	// Setup Platform/Renderer bindings
 	ImGui_ImplGlfw_InitForOpenGL(MiniGL::getWindow(), false);
 	const char* glsl_version = "#version 330";
-	ImGui_ImplOpenGL3_Init(glsl_version);
+	#ifdef __APPLE__
+		ImGui_ImplOpenGL2_Init();
+	#else
+		ImGui_ImplOpenGL3_Init(glsl_version);
+	#endif
 }
 
 void Simulator_GUI_imgui::initImguiParameters()
@@ -284,7 +292,11 @@ void Simulator_GUI_imgui::initParameterGUI()
 void Simulator_GUI_imgui::update()
 {
 	// Start the Dear ImGui frame
-	ImGui_ImplOpenGL3_NewFrame();
+	#ifdef __APPLE__
+		ImGui_ImplOpenGL2_NewFrame();
+	#else
+		ImGui_ImplOpenGL3_NewFrame();
+	#endif
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 	
@@ -292,13 +304,21 @@ void Simulator_GUI_imgui::update()
 
 	// Rendering
 	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	#ifdef __APPLE__
+		ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+	#else
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	#endif
 }
 
 void Simulator_GUI_imgui::destroy()
 {
 	// Cleanup
-	ImGui_ImplOpenGL3_Shutdown();
+	#ifdef __APPLE__
+		ImGui_ImplOpenGL2_Shutdown();
+	#else
+		ImGui_ImplOpenGL3_Shutdown();
+	#endif
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 }

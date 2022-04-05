@@ -18,6 +18,13 @@ set(IMGUI_SOURCES
 	imgui_widgets.cpp
 )
 
+if (APPLE)
+	list(REMOVE_ITEM IMGUI_HEADERS imgui_impl_opengl3.h)
+	list(REMOVE_ITEM IMGUI_SOURCES imgui_impl_opengl3.cpp)
+	list(APPEND IMGUI_HEADERS imgui_impl_opengl2.h)
+	list(APPEND IMGUI_SOURCES imgui_impl_opengl2.cpp)
+endif()
+
 add_library(imgui
 	${IMGUI_HEADERS}
 	${IMGUI_SOURCES}
