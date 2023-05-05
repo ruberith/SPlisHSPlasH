@@ -117,6 +117,15 @@ void PartioViewer_OpenGL::initShaders(const std::string &shaderPath)
 	glGenTextures(1, &m_textureMap);
 }
 
+void PartioViewer_OpenGL::destroyShaders()
+{
+    glDeleteTextures(1, &m_textureMap);
+    m_shader_vector.destroy();
+    m_shader_scalar.destroy();
+    m_shader_scalar_map.destroy();
+    m_meshShader.destroy();
+    MiniGL::destroyShaders();
+}
 
 void PartioViewer_OpenGL::pointShaderBegin(Shader *shader, const Real particleRadius, const float *col, const Real minVal, const Real maxVal, const bool useTexture, float const* color_map)
 {

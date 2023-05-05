@@ -226,6 +226,7 @@ namespace SPH
 		static const Matrix4r& getProjectionMatrix() { return m_projection_matrix; }
 
 		static void initShaders(const std::string& shaderPath);
+        static void destroyShaders();
 		static void enableShader(const Vector3r& ambientReflectance, const Vector3r& diffuseReflectance, const Vector3r& specularReflectance, const Real shininess, const Real pointSize=1.0);
 		static void disableShader();
         static void enableScreenShader(const Vector3r& color);

@@ -761,6 +761,12 @@ void MiniGL::initShaders(const std::string& shaderPath)
     screenShader.end();
 }
 
+void MiniGL::destroyShaders()
+{
+    m_shader.destroy();
+    m_shader_screen.destroy();
+}
+
 void MiniGL::enableShader(const Vector3r& ambientReflectance, const Vector3r& diffuseReflectance, const Vector3r& specularReflectance, const Real shininess, const Real pointSize)
 {
 	Shader& shader = m_shader;
@@ -1101,11 +1107,11 @@ void MiniGL::mainLoop()
 	if (destroyfunc != nullptr)
 		destroyfunc();
 
-	glfwDestroyWindow(m_glfw_window);
+    destroy();
+
+    glfwDestroyWindow(m_glfw_window);
 
 	glfwTerminate();
-
-	destroy();
 }
 
 void MiniGL::leaveMainLoop()

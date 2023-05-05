@@ -420,6 +420,7 @@ void PartioViewer_GUI_imgui::destroy()
 	ImGui_ImplOpenGL3_Shutdown();
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
+    PartioViewer_OpenGL::destroyShaders();
 }
 
 

@@ -95,6 +95,15 @@ void Simulator_OpenGL::initShaders(const std::string &shaderPath)
 	glGenTextures(1, &m_textureMap);
 }
 
+void Simulator_OpenGL::destroyShaders()
+{
+    glDeleteTextures(1, &m_textureMap);
+    m_shader_vector.destroy();
+    m_shader_scalar.destroy();
+    m_shader_scalar_map.destroy();
+    m_meshShader.destroy();
+    MiniGL::destroyShaders();
+}
 
 void Simulator_OpenGL::meshShaderBegin(const float *col)
 {
