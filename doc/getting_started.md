@@ -29,8 +29,8 @@ The scene file format is explained [here.](file_format.md)
 ##### Hotkeys
 
 * Space: pause/contiunue simulation
-* a/y/up/down/left/right: move viewport
-* 1/2/3/4: rotate viewport
+* a/y/up/down/left/right: move camera
+* 1/2/3/4: rotate camera
 * w: wireframe rendering of meshes
 * m: recompute min and max values for color-coding the color field in the rendering process
 * i: print all field information of the selected particles to the console
