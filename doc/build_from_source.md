@@ -1,3 +1,37 @@
+# Installation Instructions - MacOS
+
+## Build with Homebrew
+
+### Install Homebrew with [PKG](https://github.com/Homebrew/brew/releases/latest)
+
+### Install Dependencies
+
+```bash
+brew install git cmake xorg-dev freeglut3-dev build-essential
+brew install libomp
+```
+
+Please set ENV **CPPFLAGS** and **LDFLAGS** via output
+
+### Python Bindings - NOT TEST
+
+### Building Instructions
+
+```bash
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release -DUSE_PYTHON_BINDINGS=Off -DCMAKE_C_FLAGS="$CPPFLAGS" -DCMAKE_CXX_FLAGS="$CPPFLAGS" -DCMAKE_EXE_LINKER_FLAGS="$LDFLAGS" -DCMAKE_CXX_STANDARD=17 ..
+make 
+```
+
+### Run Executable
+
+```
+cd ../bin
+./SPHSimulator ../data/Scenes/DoubleDamBreak.json
+```
+
+The command loads the selected scene. To start the simulation disable the pause mode by clicking the checkbox or pressing [Space]. More hotkeys are listed [here](getting_started.md).
+
 # Installation Instructions - Linux
 
 ## Ubuntu Fresh Install
